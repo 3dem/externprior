@@ -18,7 +18,8 @@ tar -xvf 4bb9_data.tar.gz
 tar -xvf dncnn_model.tar.gz
 git clone https://github.com/3dem/externprior.git
 export RELION_EXTERNAL_RECONSTRUCT_EXECUTABLE="python externprior/exrecon_cwred.py dncnn_model"
+mkdir cwred_test
 mpirun -n 3 relion_refine_mpi --auto_refine --split_random_halves --i 4bb9_data/particles.star --ref 4bb9_data/ref.mrc --ini_high 30 --pad 1 --particle_diameter 110 --flatten_solvent --zero_mask --oversampling 1 --healpix_order 2 --auto_local_healpix_order 4 --offset_range 5 --offset_step 2 --sym C1 --preread_images --low_resol_join_halves 40 --norm --scale --gpu --j 4 --pool 30 --dont_combine_weights_via_disc --o cwred_test/run --external_reconstruct
 ````
-You need RELION 3.1 pre-installed for this example. 
+For this example, you need: RELION 3.1 pre-installed, Tensorflow 1.15 and the Mrcfile python module. 
 To run the same reconstruction with regular MAP remove `--external_reconstruct`.
