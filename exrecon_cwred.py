@@ -61,7 +61,8 @@ def get_confidence_from_fsc(fsc):
     res[0] = 999.
     res[1:] = len(fsc) * 2 * VOXEL_SIZE / np.arange(1, len(fsc))
     threshold = np.argmax(fsc < 1/7) - 1
-    assert threshold > 0
+    if threshold > 0:
+        threshold = len(fsc)-1
     current_res = res[threshold]
     w = 1.8 - 0.18 * current_res
     if w < 0:
