@@ -3,9 +3,7 @@
 """
 model.py
 ============
-
 File with graph layout for the model used in confidence weighted regularisation by denoising.
-
 Authors: Dari Kimanius
 """
 
@@ -143,3 +141,4 @@ def ops(input, output, model):
     train_loss += reg_losses * _REG_SCALE
 
     return train_loss, reg_losses, l1_loss, l2_loss, denoised
+    
